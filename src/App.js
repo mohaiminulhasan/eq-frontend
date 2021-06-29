@@ -1,11 +1,9 @@
 import './App.css';
 import { Graph, DataTable, Map } from './pages';
-import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { HashRouter, Route, NavLink } from 'react-router-dom';
 
 
 function App() {
-  let {path, url} = useRouteMatch();
-
   const navStyle = {
     display: 'flex',
     justifyContent: 'space-around',
@@ -27,29 +25,29 @@ function App() {
   }
   
   const CustomNavLink = (to, text) => {
-    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to={`${url}${to}`}>{text}</NavLink>
+    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} to={`${to}`}>{text}</NavLink>
   }
 
   return (
     <div>
       <nav style={{...navStyle}}>
         {/* {CustomNavLink('', 'Home')} */}
-        {CustomNavLink('/eq-frontend', 'Graph')}
-        {CustomNavLink('/eq-frontend/data-table', 'Data Table')}
-        {CustomNavLink('/eq-frontend/map', 'Map')}
+        <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to='/'>Graph</NavLink>
+        {CustomNavLink('/data-table', 'Data Table')}
+        {CustomNavLink('/map', 'Map')}
       </nav>
 
-      <Switch>
-          <Route exact path='/eq-frontend'>
+      <HashRouter>
+          <Route exact path="/">
             <Graph/>
           </Route>
-          <Route path='/eq-frontend/data-table'>
+          <Route path='data-table'>
             <DataTable/>
           </Route>
-          <Route path="/eq-frontend/map">
+          <Route path='/map'>
             <Map/>
           </Route>
-      </Switch>
+      </HashRouter>
     </div>
   );
 }
