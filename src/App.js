@@ -1,6 +1,6 @@
 import './App.css';
 import { Graph, DataTable, Map } from './pages';
-import { HashRouter, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 
 
 function App() {
@@ -37,17 +37,17 @@ function App() {
         {CustomNavLink('/map', 'Map')}
       </nav>
 
-      <HashRouter>
+      <Switch>
           <Route exact path="/">
             <Graph/>
           </Route>
-          <Route path='data-table'>
+          <Route path='/data-table'>
             <DataTable/>
           </Route>
           <Route path='/map'>
             <Map/>
           </Route>
-      </HashRouter>
+      </Switch>
     </div>
   );
 }
