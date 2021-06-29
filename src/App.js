@@ -4,7 +4,7 @@ import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
 
 
 function App() {
-  let match = useRouteMatch();
+  let {path, url} = useRouteMatch();
 
   const navStyle = {
     display: 'flex',
@@ -27,26 +27,26 @@ function App() {
   }
   
   const CustomNavLink = (to, text) => {
-    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to={`${match.url}${to}`}>{text}</NavLink>
+    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to={`${url}${to}`}>{text}</NavLink>
   }
 
   return (
     <div>
       <nav style={{...navStyle}}>
         {/* {CustomNavLink('', 'Home')} */}
-        {CustomNavLink('/', 'Graph')}
-        {CustomNavLink('/data-table', 'Data Table')}
-        {CustomNavLink('/map', 'Map')}
+        {CustomNavLink('/eq-frontend', 'Graph')}
+        {CustomNavLink('/eq-frontend/data-table', 'Data Table')}
+        {CustomNavLink('/eq-frontend/map', 'Map')}
       </nav>
 
       <Switch>
-          <Route exact path="/">
+          <Route exact path='/eq-frontend'>
             <Graph/>
           </Route>
-          <Route path="/data-table">
+          <Route path='/eq-frontend/data-table'>
             <DataTable/>
           </Route>
-          <Route path="/map">
+          <Route path="/eq-frontend/map">
             <Map/>
           </Route>
       </Switch>
