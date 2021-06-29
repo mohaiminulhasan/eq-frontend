@@ -1,0 +1,1 @@
+export const domain = 'https://demo-flask-app-hasan.herokuapp.com'
