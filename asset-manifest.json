@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/eq-frontend/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/eq-frontend/static/js/main.632a50b8.chunk.js",
+    "main.js.map": "/eq-frontend/static/js/main.632a50b8.chunk.js.map",
+    "runtime-main.js": "/eq-frontend/static/js/runtime-main.c9f3d7f2.js",
+    "runtime-main.js.map": "/eq-frontend/static/js/runtime-main.c9f3d7f2.js.map",
+    "static/js/2.719d680b.chunk.js": "/eq-frontend/static/js/2.719d680b.chunk.js",
+    "static/js/2.719d680b.chunk.js.map": "/eq-frontend/static/js/2.719d680b.chunk.js.map",
+    "index.html": "/eq-frontend/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/eq-frontend/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.719d680b.chunk.js.LICENSE.txt": "/eq-frontend/static/js/2.719d680b.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c9f3d7f2.js",
+    "static/js/2.719d680b.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.632a50b8.chunk.js"
+  ]
+}
