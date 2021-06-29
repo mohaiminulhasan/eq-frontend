@@ -32,9 +32,9 @@ function App() {
     <div>
       <nav style={{...navStyle}}>
         {/* {CustomNavLink('', 'Home')} */}
-        {CustomNavLink('', 'Graph')}
-        {CustomNavLink('data-table', 'Data Table')}
-        {CustomNavLink('map', 'Map')}
+        {CustomNavLink('/', 'Graph')}
+        {CustomNavLink('/data-table', 'Data Table')}
+        {CustomNavLink('/map', 'Map')}
       </nav>
 
       <Switch>
