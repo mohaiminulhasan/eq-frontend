@@ -1,9 +1,11 @@
 import './App.css';
 import { Graph, DataTable, Map } from './pages';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
 
 
 function App() {
+  let match = useRouteMatch();
+
   const navStyle = {
     display: 'flex',
     justifyContent: 'space-around',
@@ -25,7 +27,7 @@ function App() {
   }
   
   const CustomNavLink = (to, text) => {
-    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to={`${to}`}>{text}</NavLink>
+    return <NavLink style={{...linkStyle}} activeStyle={{...activeStyle}} exact to={`${match.url}${to}`}>{text}</NavLink>
   }
 
   return (
