@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
-import ReactMapGL from 'react-map-gl'
-import { Pins } from '../components'
-import { domain } from '../utils'
+import ReactMapGL from 'react-map-gl';
+import mapboxgl from "mapbox-gl";
+import { Pins } from '../components';
+import { domain } from '../utils';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+
 
 export const Map = () => {
     const [data, setData] = useState([])
