@@ -1,20 +1,22 @@
 {
   "files": {
     "main.css": "/eq-frontend/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/eq-frontend/static/js/main.27eba38c.chunk.js",
-    "main.js.map": "/eq-frontend/static/js/main.27eba38c.chunk.js.map",
+    "main.js": "/eq-frontend/static/js/main.95489948.chunk.js",
+    "main.js.map": "/eq-frontend/static/js/main.95489948.chunk.js.map",
     "runtime-main.js": "/eq-frontend/static/js/runtime-main.c9f3d7f2.js",
     "runtime-main.js.map": "/eq-frontend/static/js/runtime-main.c9f3d7f2.js.map",
-    "static/js/2.999e71c1.chunk.js": "/eq-frontend/static/js/2.999e71c1.chunk.js",
-    "static/js/2.999e71c1.chunk.js.map": "/eq-frontend/static/js/2.999e71c1.chunk.js.map",
+    "static/js/2.89aa6c50.chunk.js": "/eq-frontend/static/js/2.89aa6c50.chunk.js",
+    "static/js/2.89aa6c50.chunk.js.map": "/eq-frontend/static/js/2.89aa6c50.chunk.js.map",
     "index.html": "/eq-frontend/index.html",
     "static/css/main.ea1455b2.chunk.css.map": "/eq-frontend/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.999e71c1.chunk.js.LICENSE.txt": "/eq-frontend/static/js/2.999e71c1.chunk.js.LICENSE.txt"
+    "static/js/2.89aa6c50.chunk.js.LICENSE.txt": "/eq-frontend/static/js/2.89aa6c50.chunk.js.LICENSE.txt",
+    "static/js/mapbox-gl-csp-worker.0921e78f.worker.js": "/eq-frontend/static/js/mapbox-gl-csp-worker.0921e78f.worker.js",
+    "static/js/mapbox-gl-csp-worker.0921e78f.worker.js.map": "/eq-frontend/static/js/mapbox-gl-csp-worker.0921e78f.worker.js.map"
   },
   "entrypoints": [
     "static/js/runtime-main.c9f3d7f2.js",
-    "static/js/2.999e71c1.chunk.js",
+    "static/js/2.89aa6c50.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.27eba38c.chunk.js"
+    "static/js/main.95489948.chunk.js"
   ]
 }
