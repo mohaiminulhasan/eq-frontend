@@ -13,9 +13,9 @@ export const Map = () => {
     const [viewport, setViewport] = useState({
         latitude: 39.7837304,
         longitude: -100.4458825,
-        width: '100vw',
-        height: '100vh',
-        zoom: 4,
+        width: '50vw',
+        height: '50vh',
+        zoom: 3,
         pitch: 50
     })
 
@@ -44,13 +44,15 @@ export const Map = () => {
     }, [])
 
     return (
-        <ReactMapGL
-            mapStyle='mapbox://styles/mapbox/dark-v10'
-            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-            {...viewport}
-            onViewportChange={(viewport) => setViewport(viewport)}
-        >
-        <Pins data={data} />
-        </ReactMapGL>
+        <div style={{ display: 'grid', justifyContent: 'center', height: '90vh', alignContent: 'center'}}>
+            <ReactMapGL
+                mapStyle='mapbox://styles/mapbox/dark-v10'
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+                {...viewport}
+                onViewportChange={(viewport) => setViewport(viewport)}
+            >
+            <Pins data={data} />
+            </ReactMapGL>
+        </div>
     );
 }
