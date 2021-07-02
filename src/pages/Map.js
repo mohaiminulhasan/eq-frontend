@@ -1,58 +1,90 @@
-import { useEffect, useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import * as React from 'react';
+import {useState, useRef} from 'react';
 import mapboxgl from "mapbox-gl";
-import { Pins } from '../components';
-import { domain } from '../utils';
+import MapGL, {Source, Layer} from 'react-map-gl';
+import { Radio } from '../components';
+import { domain } from '../utils'
+
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer} from '../components/layers';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
+const MAPBOX_TOKEN = 'pk.eyJ1IjoibWluaWd1bm5yIiwiYSI6ImNrcWdzMGxpMDIwM3AycXM3MWdneDFhY28ifQ.Z1xP1Lr6tDGhuodviJh9lg'; // Set your mapbox token here
 
-export const Map = () => {
-    const [data, setData] = useState([])
-    const [viewport, setViewport] = useState({
-        latitude: 39.7837304,
-        longitude: -100.4458825,
-        width: '50vw',
-        height: '50vh',
-        zoom: 3,
-        pitch: 50
-    })
+export default function Map() {
+  const [category, setCategory] = useState('events')
+  const [viewport, setViewport] = useState({
+    latitude: 39.7837304,
+    longitude: -100.4458825,
+    width: '80vw',
+    height: '60vh',
+    zoom: 4,
+    bearing: 0,
+    pitch: 50
+  });
+  const mapRef = useRef(null);
 
-    useEffect(() => {
-        async function fetchData() {
-            const uri = `${domain}/poi`;
-            console.log(uri);
+  const onClick = event => {
+    const feature = event.features[0];
+    const clusterId = feature.properties.cluster_id;
 
-            let h = new Headers();
-            h.append('Content-Type', 'application/json');
+    const mapboxSource = mapRef.current.getMap().getSource('earthquakes');
 
-            let req = new Request(uri, {
-                method: 'GET',
-                headers: h,
-                mode: 'cors'
-            });
+    mapboxSource.getClusterExpansionZoom(clusterId, (err, zoom) => {
+      if (err) {
+        return;
+      }
 
-            const response = await fetch(req);
-            const json = await response.json();
-            
-            setData(json);
+      setViewport({
+        ...viewport,
+        longitude: feature.geometry.coordinates[0],
+        latitude: feature.geometry.coordinates[1],
+        zoom,
+        transitionDuration: 500
+      });
+    });
+  };
 
-        }
-        
-        fetchData();
-    }, [])
+  const handleCategoryChange = e => {
+    setCategory(e.target.value);
+  }
 
-    return (
-        <div style={{ display: 'grid', justifyContent: 'center', height: '90vh', alignContent: 'center'}}>
-            <ReactMapGL
-                mapStyle='mapbox://styles/mapbox/dark-v10'
-                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-                {...viewport}
-                onViewportChange={(viewport) => setViewport(viewport)}
-            >
-            <Pins data={data} />
-            </ReactMapGL>
+  const controlStyle = {
+    display: 'flex', flexDirection: 'column', border: '2px darkslateblue solid', borderRadius: 10, padding: '15px 30px'
+  }
+
+  return (
+    <div style={{ display: 'grid', justifyContent: 'center', height: '90vh', alignContent: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', margin: '20px 0' }}>
+        <div style={{...controlStyle}}>
+            <Radio id='events' name='category' value='events' state={category} handler={handleCategoryChange} text='Events' />
+            <Radio id='stats' name='category' value='stats' state={category} handler={handleCategoryChange} text='Stats' />
         </div>
-    );
+      </div>
+
+      <MapGL
+        {...viewport}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        onViewportChange={setViewport}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        interactiveLayerIds={[clusterLayer.id]}
+        onClick={onClick}
+        ref={mapRef}
+      >
+        <Source
+          id="earthquakes"
+          type="geojson"
+          data={`${domain}/${category}/geo`}
+          cluster={true}
+          clusterMaxZoom={14}
+          clusterRadius={50}
+        >
+          <Layer {...clusterLayer} />
+          <Layer {...clusterCountLayer} />
+          <Layer {...unclusteredPointLayer} />
+        </Source>
+      </MapGL>
+    </div>
+  );
 }

@@ -1,5 +1,6 @@
 import './App.css';
-import { Graph, DataTable, Map } from './pages';
+import { Graph, DataTable } from './pages';
+import Map from './pages/Map';
 import { Switch, Route, NavLink } from 'react-router-dom';
 
 
